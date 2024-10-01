@@ -1,31 +1,27 @@
-pipeline {
+pipeline{
     agent any
-    
-    tools {
-        maven 'local_maven'
-    }
-    parameters {
-         string(name: 'staging_server', defaultValue: '13.232.37.20', description: 'Remote Staging Server')
-    }
 
-stages{
-        stage('Build'){
+    tools {
+        maven 'localMaven'
+    }
+    stages{
+        stage('Build java Application'){
             steps {
-                sh 'mvn clean package'
+                 sh 'mvn clean package'
+
             }
             post {
-                success {
+                success{
                     echo 'Archiving the artifacts'
-                    archiveArtifacts artifacts: '**/target/*.war'
+                    archiveArtifacts artifacts:'**/target/*.war'
                 }
             }
         }
-
-        stage ('Deployments'){
+        stage('Deployment to staging server'){
             parallel{
-                stage ("Deploy to Staging"){
-                    steps {
-                        sh "scp -v -o StrictHostKeyChecking=no **/*.war root@${params.staging_server}:/opt/tomcat/webapps/"
+                stage('Deploy to Tomcat Server1'){
+                    steps{deploy adapters: [tomcat9(credentialsId: 'tomcat-b15', path: '', url: 'http://13.201.41.60:8080/')], contextPath: null, war: '**/*.war'
+
                     }
                 }
             }
