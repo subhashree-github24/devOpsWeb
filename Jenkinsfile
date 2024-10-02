@@ -20,7 +20,7 @@ pipeline{
         stage('Deployment to staging server'){
             parallel{
                 stage('Deploy to Tomcat Server1'){
-                    steps{deploy adapters: [tomcat9(credentialsId: 'tomcat-b15', path: '', url: 'http://13.201.41.60:8080/')], contextPath: null, war: '**/*.war'
+                    steps{deploy adapters: [tomcat9(credentialsId: 'tomcat-b15', path: '', url: 'http://13.127.153.105:8080/')], contextPath: null, war: '**/*.war'
 
                     }
                 }
