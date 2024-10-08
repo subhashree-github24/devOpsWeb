@@ -1,6 +1,6 @@
 pipeline{
-    agent {
-        label 'javabuild'
+    agent any
+        
     }
 
     tools {
