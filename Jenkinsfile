@@ -23,7 +23,7 @@ pipeline{
             parallel{
                 stage('Deploy to Tomcat Server1'){
                     steps{
-                        deploy adapters: [tomcat9(credentialsId: 'tomcat-b13', path: '', url: 'http://3.111.23.46:8080/')], contextPath: null, war: '**/*.war'
+                        deploy adapters: [tomcat9(credentialsId: 'tomcat-b15', path: '', url: 'http://3.109.155.163:8080/')], contextPath: null, war: '**/*.war'
                     }
                 }
             }
