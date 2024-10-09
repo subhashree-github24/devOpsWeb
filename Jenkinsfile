@@ -1,14 +1,12 @@
 pipeline{
     agent any
-
     tools {
         maven 'localmaven'
     }
     stages{
-        stage('Build java Application'){
+            stage('Build java Application'){
             steps {
-                 sh 'mvn clean package'
-
+                sh 'mvn clean package'
             }
             post {
                 success{
@@ -20,7 +18,8 @@ pipeline{
         stage('Deployment to staging server'){
             parallel{
                 stage('Deploy to Tomcat Server1'){
-                    steps{}deploy adapters: [tomcat9(credentialsId: 'tomcat-b15', path: '', url: 'http://3.109.155.163:8080/')], contextPath: null, war: '**/*.war'
+                    steps{                        
+                    deploy adapters: [tomcat9(credentialsId: 'tomcat-b15', path: '', url: 'http://3.109.155.163:8080/')], contextPath: null, war: '**/*.war'
 
                     }
                 }
