@@ -1,10 +1,8 @@
 pipeline{
     agent any
-        
-    }
 
     tools {
-        maven 'localmaven'
+        maven 'localMaven'
     }
     stages{
         stage('Build java Application'){
@@ -22,11 +20,10 @@ pipeline{
         stage('Deployment to staging server'){
             parallel{
                 stage('Deploy to Tomcat Server1'){
-                    steps{
-                        deploy adapters: [tomcat9(credentialsId: 'tomcat-b15', path: '', url: 'http://3.109.155.163:8080/')], contextPath: null, war: '**/*.war'
+                    steps{}deploy adapters: [tomcat9(credentialsId: 'tomcat-b15', path: '', url: 'http://3.109.155.163:8080/')], contextPath: null, war: '**/*.war'
+
                     }
                 }
             }
         }
-    }
-}
+    
