@@ -1,0 +1,32 @@
+pipeline {
+  agent any
+
+  tools{
+    maven 'localMaven'
+  
+  }
+  environment {
+    fname = "subho"
+    lname = "mohanty"
+    version = "2.0"
+    system = "Test"
+  }
+ stages{
+        stage('Build'){
+            steps {
+                   sh 'mvn clean package'
+               }
+            post{
+                success {
+                    echo 'Archiving the artifacts'
+                    archiveArtifacts artifacts: '**/target/*.war'
+                 }
+               }         
+             }
+               stage ('Deploy to server'){
+                 steps{
+                        echo "This is just a demo on staging1 server."
+                       } 
+                   }                             
+                 }
+                }
