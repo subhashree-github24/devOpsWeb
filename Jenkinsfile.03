@@ -10,7 +10,7 @@ pipeline {
     }
     post{
       successs{
-          emailext body: 'Email send out from jenkins', subject: 'Test email', to: 'lucysubhashree4@gmail.com'
+          emailext body: 'Email send out from jenkins', subject: 'Test email', to: 'mohantylucy938@gmail.com'
         }
     }
   }
