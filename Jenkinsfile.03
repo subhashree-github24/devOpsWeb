@@ -8,7 +8,7 @@ pipeline {
         echo "Builing the project"
       }
     }
-    post{
+    post {
       successs{
           emailext body: 'Email send out from jenkins', subject: 'Test email', to: 'mohantylucy938@gmail.com'
         }
