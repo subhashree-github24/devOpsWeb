@@ -1,7 +1,7 @@
 pipeline {
   agent any 
   stages{
-    stage('Build'){
+    stage ('Build'){
       steps{
         echo "Builing the project"
       }
@@ -9,7 +9,7 @@ pipeline {
     post{
       successs{
           emailext body: 'Email send out from jenkins', subject: 'Test email', to: 'lucysubhashree4@gmail.com'
-      }
+      
     }
   }
 }
