@@ -8,10 +8,11 @@ pipeline {
         echo "Builing the project"
       }
     }
-    post {
+   
+  }
+ post {
       success{
           emailext body: 'Email send out from jenkins', subject: 'Test email', to: 'mohantylucy938@gmail.com'
         }
     }
-  }
 }
