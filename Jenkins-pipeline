@@ -21,6 +21,9 @@ pipeline {
                     echo 'Archiving the artifacts'
                     archiveArtifacts artifacts: '**/target/*.war'
                  }
+                  failure{
+                     emailext attachLog: true, body: 'Build failed', subject: 'Build failed - $(BUILDNUMBER)', to: 'mohantysubhashree938@gmail.com'
+                  }
                }         
              }
                stage ('Deploy to server'){
